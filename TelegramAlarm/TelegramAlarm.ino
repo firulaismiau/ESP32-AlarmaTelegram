@@ -74,6 +74,27 @@ void newMessages(int numMessages)
      
     }
 
+    //Distance 
+    String myString2;
+    if(text=="Distance"){
+     myString2 = String(distanceSelect);
+      bot.sendMessage(chat_id,myString2);
+    }
+    //Modify distance
+    if(text =="MOD"){
+      alarmState = HIGH;    //State HIGH : next number will be the new distance   State LOW : no changes allowed
+      bot.sendMessage(chat_id,"Write a number between 1-300");
+    }
+  String myString;
+    for(int j=0;j<distanceMax;j++){
+      myString = String(j);
+      if(text==myString && alarmState == HIGH){
+        distanceSelect = j;
+        alarmState = LOW;
+        
+        bot.sendMessage(chat_id,"Distance changed to"+text);
+      }
+    }
     if (text == "Help")
     {
       String help = "Welcome to ESP32 System, " ".\n";
@@ -88,25 +109,6 @@ void newMessages(int numMessages)
      
       bot.sendMessage(chat_id,help, "");
       
-    }
-    String myString2;
-    if(text=="Distance"){
-     myString2 = String(distanceSelect);
-      bot.sendMessage(chat_id,myString2);
-    }
-    if(text =="MOD"){
-      alarmState = HIGH;    //State HIGH : next number will be the new distance   State LOW : no changes allowed
-      bot.sendMessage(chat_id,"Write a number between 1-300");
-    }
-  String myString;
-    for(int j=0;j<distanceMax;j++){
-      myString = String(j);
-      if(text==myString && alarmState == HIGH){
-        distanceSelect = j;
-        alarmState = LOW;
-        
-        bot.sendMessage(chat_id,"Distance changed to"+text);
-      }
     }
     
     
